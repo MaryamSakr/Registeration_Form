@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="registeration-container">
+        <div class="header">Registration Form</div>
+        <form action="" class="form">
+            <div class="input-container">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label><br>
+                    <input type="text" id="full-name" name="full-name" placeholder="Enter Full Name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="user-name">Username</label><br>
+                    <input type="text" id="user-name" name="user-name" placeholder="Enter Username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone-num">Phone Number</label><br>
+                    <input type="tel" id="phone-num" name="phone-num" placeholder="Enter Phone Number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password" name="password" placeholder="Enter Password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label><br>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label><br>
+                    <input type="text" id="email" name="email" placeholder="Enter Email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address</label><br>
+                    <input type="text" id="address" name="address" placeholder="Enter Address">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Birthdate</label><br>
+                    <div class="birth-date">
+                        <input type="date" id="birthdate" name="birthdate" placeholder="Enter Birthdate">
+                        <button class="api-check">Check</button>
+                    </div>
+                </div>                
+
+                <div class="form-group image">
+                    <label for="image-upload">Upload Photo</label><br>
+                    <input type="file" id="image-upload" name="image-upload" accept="image/jpeg, image/png, image/jpg">
+                </div>
+
+            </div>     
+            <div class="submit">
+                <input type="submit" value="Register">
+            </div>
+        
+        </form>
+    </div>
+</body>
+</html>
