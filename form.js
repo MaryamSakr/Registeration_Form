@@ -15,10 +15,13 @@ const image = document.getElementById('image-upload')
 // client side validation part
 
 form.addEventListener('submit', e => {
-    e.preventDefault()
-
-    if(validateInputs()){
-        // call an ajax function to send data to php
+    
+    var xhr = new XMLHttpRequest();
+    if(!validateInputs()){
+        e.preventDefault();
+        
+    }else{
+        xhr.open("POST", "FormEdit.php", true); 
     }
 });
 
@@ -48,12 +51,13 @@ const isValidEmail = email => {
 }
 
 const isValidPassword = password =>{
-    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
+    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*_])[a-zA-Z0-9!@#$%^&*_]{8,}$/
     return re.test(password)
 }
 
 //checks when submit
 const validateInputs = () => {
+    var check = true
     const fullnameValue = fullname.value.trim()
     const usernameValue = username.value.trim()
     const phonenumValue = phonenum.value
@@ -66,6 +70,7 @@ const validateInputs = () => {
 
     if(fullnameValue ===''){
         setError(fullname, 'Fullname is required')
+        check = false
     }else{
         setSuccess(fullname)
     }
@@ -73,6 +78,7 @@ const validateInputs = () => {
 
     if(usernameValue === '') {
         setError(username, 'Username is required')
+        check = false;
     }else {
         setSuccess(username)
     }
@@ -80,17 +86,21 @@ const validateInputs = () => {
 
     if(phonenumValue ===''){
         setError(phonenum,"Phone Number is required")
+        check = false;
     }
 
 
     if(passwordValue === '') {
         setError(password, 'Password is required')
+        check = false;
     } else if (!isValidPassword(passwordValue)) {
-        setError(password, 'Password must be at least 8 characters long\nand include at least one number and one special character')       
+        setError(password, 'Password must be at least 8 characters long\nand include at least one number and one special character')      
+        check = false; 
     } else {
         setSuccess(password)
         if (password2Value !== passwordValue) {
             setError(password2, "Passwords doesn't match")
+            check = false;
         }else{
             setSuccess(password2)
         }
@@ -99,13 +109,16 @@ const validateInputs = () => {
 
     if(password2Value === '') {
         setError(password2, 'Please confirm your password')
+        check = false;
     }
 
 
     if(emailValue === '') {
         setError(email, 'Email is required')
+        check = false;
     } else if (!isValidEmail(emailValue)) {
         setError(email, 'Provide a valid email address')
+        check = false;
     } else {
         setSuccess(email)
     }
@@ -113,6 +126,7 @@ const validateInputs = () => {
 
     if(addressValue === ''){
         setError(address, 'Address is required')
+        check = false;
     }else{
         setSuccess(address)
     }
@@ -120,6 +134,7 @@ const validateInputs = () => {
 
     if(birthdateValue === '') {
         setError(birthdate.parentElement, 'Birthdate is required')
+        check = false;
     } else {
         setSuccess(birthdate.parentElement)
     }
@@ -127,11 +142,16 @@ const validateInputs = () => {
 
     if(imageValue === ''){
         setError(image, 'Profile Photo is Required')
+        check = false;
         image.style.color = '#0d2fb5'
     }else{
         setSuccess(image)
         image.style.color = '#09c372'
     }
+
+    return check
+
+
 
 };
 
