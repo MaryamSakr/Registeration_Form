@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $address = $_POST["address"];
     $birthDate = $_POST["birthdate"];
-    // $imageName = $_POST["image-upload"];
+    $imageName = $_POST["image-upload"];
 
     try {
         require_once "DB_Ops.php";
-        $user = "INSERT INTO users (full_name , user_name , birthdate , phone , addrs , pass , Email )
-        VALUES (?, ?, ?, ?, ?, ?, ?);";
+        $user = "INSERT INTO users (full_name , user_name , birthdate , phone , addrs , pass , Email,imageName )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $pdo->prepare($user);
-        $stmt->execute([$fullName, $userName, $birthDate, $phoneNum, $address, $pass, $email]);
+        $stmt->execute([$fullName, $userName, $birthDate, $phoneNum, $address, $pass, $email , $imageName]);
         exit();
     } catch (PDOException $e) {
         echo '<script>alert("User Name Already Exist");</script>';
