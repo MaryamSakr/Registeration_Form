@@ -10,7 +10,7 @@
     <div id="blur">
         <div class="registeration-container">
             <div class="header">Registration Form</div>
-            <form action="FormEdit.php" id="form" class="form" method="POST">
+            <form action="FormEdit.php" id="form" class="form" method="POST" enctype="multipart/form-data">
                 <div class="input-container">
                     <div class="form-group">
                         <label for="full-name">Full Name <span>*</span></label><br>

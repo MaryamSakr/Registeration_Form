@@ -1,26 +1,58 @@
 <?php
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($POST['image-upload'])){
-    $file = $_FILES['image-upload'];
-
-    $fileName = $_FILES['image-upload']['name'];
-    $fileTmpName = $_FILES['image-upload']['tmp_name'];
-    $fileSize = $_FILES['image-upload']['size'];
-    $fileError = $_FILES['image-upload']['error'];
-    $fileType = $_FILES['image-upload']['type'];
-
+    echo "<script>alert('upload')</script>";
+    $fileDataEncoded = unserialize(urldecode($_GET['fileData']));
+    $fileName = $_GET['imageName'];
+    $fileTmpName = $_GET['fileTmpName'];
+    $fileSize = $_GET['fileSize'];
+    $fileError = $_GET['fileError'];
+    echo "File Temp Name: " . $fileTmpName . "<br>";
+    echo "<script>alert('$fileTmpName')</script>";
     $fileExt = explode('.' , $fileName);
     $fileActualExt = strtolower(end($fileExt));
-
-    if ($fileError === 0) {
+    if ($fileError === '0') {
         if ($fileSize < 5000000) {
-            $fileNameNew = uniqid('' , true).".".$fileActualExt;
-            $fileDestination = 'uploads/'.$fileNameNew;
-            move_uploaded_file($fileTmpName,$fileDestination);
-            header("Location: index.php?uploadsuccess");
+            $fileDestination = 'uploads/'.$fileName;
+            if(move_uploaded_file($fileTmpName,$fileDestination)){
+                header("Location: index.php?uploaduccess");
+                exit();
+            }else{
+                echo "<script>alert('Your Image Not Uploading!')</script>";
+            }
         }else{
-            echo "Your Image Is Too Big!";
+            echo "<script>alert('Your Image Is Too Big!')</script>";
         }
     }else{
-        echo "There Was An Error Uploading Your Image!";
+        echo "<script>alert('There Was An Error Uploading Your Image!')</script>";
     }
-}
+
+    // if($_SERVER["REQUEST_METHOD"] == "POST"){
+    //     echo "<script>alert('upload')</script>";
+    //     $file = $_FILES['image-upload'];
+    
+    //     $fileName = $_FILES['image-upload']['name'];
+    //     $fileTmpName = $_FILES['image-upload']['tmp_name'];
+    //     $fileSize = $_FILES['image-upload']['size'];
+    //     $fileError = $_FILES['image-upload']['error'];
+    //     $fileType = $_FILES['image-upload']['type'];
+        
+    
+    //     $fileExt = explode('.' , $fileName);
+    //     $fileActualExt = strtolower(end($fileExt));
+    
+    //     if ($fileError === 0) {
+    //         if ($fileSize < 5000000) {
+    //             $fileDestination = 'uploads/'.$fileName;
+    //             if(move_uploaded_file($fileTmpName,$fileDestination)){
+    //                 echo "File Temp Name: " . $fileTmpName . "<br>";
+    //                 echo "<script>alert('$fileTmpName')</script>";
+    //                 header("Location: index.php?$fileTmpName");
+    //             }else{
+    //                 echo "<script>alert('Your Image Not Uploading!')</script>";
+    //             }
+    //         }else{
+    //             echo "<script>alert('Your Image Is Too Big!')</script>";
+    //         }
+    //     }else{
+    //         echo "<script>alert('There Was An Error Uploading Your Image!')</script>";
+    //     }
+    // }
