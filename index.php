@@ -99,9 +99,14 @@
     <script>
 
         function toggle() {
-           document.getElementById("blur").classList.toggle("active")
-           document.querySelector(".popup-container").classList.toggle("popup-container-show")
+           //document.getElementById("blur").classList.toggle("active")
+           //document.querySelector(".popup-container").classList.toggle("popup-container-show")
 
+            var date = document.getElementById("birthdate");
+            var selectedDate = new Date(date.value);
+            var day = selectedDate.getDate();
+            var month = selectedDate.getMonth() + 1;
+            window.location.href = 'API_Ops.php?day='+encodeURIComponent(day)+'&month='+encodeURIComponent(month);
         }
         
     </script>
