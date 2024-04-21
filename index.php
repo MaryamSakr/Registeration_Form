@@ -82,22 +82,12 @@
         <h1>Actors With the Same Age as You</h1>
         <div class="popup-text">
             <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
-            <p>name1 - name2 - name3 - name4</p>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="form.js"></script>
     <script>
-
+        
         function toggle() {
            //document.getElementById("blur").classList.toggle("active")
            //document.querySelector(".popup-container").classList.toggle("popup-container-show")
@@ -108,7 +98,8 @@
             var month = selectedDate.getMonth() + 1;
             window.location.href = 'API_Ops.php?day='+encodeURIComponent(day)+'&month='+encodeURIComponent(month);
         }
-        
+
     </script>
+
 </body>
 </html>

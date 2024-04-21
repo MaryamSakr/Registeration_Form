@@ -1,22 +1,22 @@
 <?php
-    $fullName = $_GET["fullName"];
-    $userName = $_GET["userName"];
-    $phoneNum = $_GET["phoneNum"];
-    $pass = $_GET["pass"];
-    $email = $_GET["email"];
-    $address = $_GET["address"];
-    $birthDate = $_GET["birthDate"];
-    $imageName = $_GET["imageName"];
-
+    $fullName = $_POST["full-name"];
+    $userName = $_POST["user-name"];
+    $phoneNum = $_POST["phone-num"];
+    $pass = $_POST["password"];
+    $confirm_pass = $_POST["confirm-password"];
+    $email = $_POST["email"];
+    $address = $_POST["address"];
+    $birthDate = $_POST["birthdate"];
+    $imageName = $_POST["image-upload"] ?? '';
     try {
         require "DB_Ops.php";
         $user = "INSERT INTO users (full_name , user_name , birthdate , phone , addrs , pass , Email,imageName )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $pdo->prepare($user);
         $stmt->execute([$fullName, $userName, $birthDate, $phoneNum, $address, $pass, $email , $imageName]);
-        exit();
+        echo 'success';
     } catch (PDOException $e) {
-        echo '<script>alert("User Name Already Exist");</script>';        
+        echo 'error';      
     }
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,3 +49,5 @@
 //     header("Location: ../index.php");
 
 // }
+
+?>

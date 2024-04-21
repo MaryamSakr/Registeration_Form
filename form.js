@@ -12,18 +12,54 @@ const image = document.getElementById('image-upload')
 
 
 
-// client side validation part
 
-form.addEventListener('submit', e => {
+
+$(form).submit(function(e) {
+            
+
+    e.preventDefault(); 
     
-    var xhr = new XMLHttpRequest();
-    if(!validateInputs()){
-        e.preventDefault();
-        
-    }else{
-        xhr.open("POST", "FormEdit.php", true); 
+    var formData = new FormData(form)
+
+    if (!validateInputs()) {
+        return; 
     }
+    
+    $.ajax({
+        url: 'FormEdit.php',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if( response === "success"){
+                setSuccess(username)
+                form.reset();
+                setNeutral();
+                alert("User registered successfully");
+            }else if(response === "error"){
+                setError(username,"Username already Exists")
+            }
+        },
+        error: function(xhr, status, error) {
+            alert(xhr.responseText)
+        }
+    });
 });
+
+
+
+
+// form.addEventListener('submit', e => {
+    
+//     var xhr = new XMLHttpRequest();
+//     if(!validateInputs()){
+//         e.preventDefault();
+        
+//     }else{
+//         xhr.open("POST", "FormEdit.php", true); 
+//     }
+// });
 
 
 
@@ -44,6 +80,11 @@ const setSuccess = element => {
     parent.classList.add('success');
     parent.classList.remove('error');
 };
+
+function setNeutral(){
+    $('.form-group').removeClass('success');
+    image.style.color = 'light-dark(rgb(118, 118, 118), rgb(133, 133, 133))'
+}
 
 const isValidEmail = email => {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
