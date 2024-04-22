@@ -12,40 +12,112 @@ const image = document.getElementById('image-upload')
 
 
 
-
-
 $(form).submit(function(e) {
+        e.preventDefault();
+
+        var formData = new FormData(this);
+
+        if (!validateInputs()) {
+            return; 
+        }
+        $.ajax({
+            url: 'Upload.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response === "success") {
+                    setSuccess(image);
+                    setSuccess(username);
+                    form.reset();
+                    alert("Image uploaded and user registered successfully");
+                    setNeutral();
+                } else if (response === "error") {
+                    setError(image, "There was an error uploading your image!");
+                } else if (response === "failed") {
+                    setError(image, "Your image did not upload!");
+                } else if (response === "size") {
+                    setError(image, "Your image is too big!");
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        $.ajax({
+            url: 'FormEdit.php',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response === "error") {
+                    setError(username, "Username already exists");
+                }
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+    });
+
+
+
+// $(form).submit(function(e) {
             
 
-    e.preventDefault(); 
+//     e.preventDefault(); 
     
-    var formData = new FormData(form)
+//     var formData = new FormData(form)
 
-    if (!validateInputs()) {
-        return; 
-    }
-    
-    $.ajax({
-        url: 'FormEdit.php',
-        type: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            if( response === "success"){
-                setSuccess(username)
-                form.reset();
-                setNeutral();
-                alert("User registered successfully");
-            }else if(response === "error"){
-                setError(username,"Username already Exists")
-            }
-        },
-        error: function(xhr, status, error) {
-            alert(xhr.responseText)
-        }
-    });
-});
+//     if (!validateInputs()) {
+//         return; 
+//     }
+//     $.ajax({
+//     url: 'Upload.php',
+//     type: 'POST',
+//     data: formData,
+//     processData: false,
+//     contentType: false,
+//     success: function(response) {
+//         if( response === "success"){
+//             setSuccess(image)
+//             form.reset();
+//             setNeutral();
+//         }else if(response === "error"){
+//             setError(image,"There Was An Error Uploading Your Image!")
+//         }else if(response ==="failed"){
+//             setError(image,"Your Image Not Uploading!")
+//         }else if(response === "size"){
+//             setError(image,"Your Image Is Too Big!")
+//         }
+//     },
+//     error: function(xhr, status, error) {
+//         alert(xhr.responseText)
+//     }
+// });
+//     $.ajax({
+//         url: 'FormEdit.php',
+//         type: 'POST',
+//         data: formData,
+//         processData: false,
+//         contentType: false,
+//         success: function(response) {
+//             if( response === "success"){
+//                 setSuccess(username)
+//                 form.reset();
+//                 setNeutral();
+//                 alert("User registered successfully");
+//             }else if(response === "error"){
+//                 setError(username,"Username already Exists")
+//             }
+//         },
+//         error: function(xhr, status, error) {
+//             alert(xhr.responseText)
+//         }
+//     });
+// });
 
 
 

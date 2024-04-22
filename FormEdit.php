@@ -7,7 +7,7 @@
     $email = $_POST["email"];
     $address = $_POST["address"];
     $birthDate = $_POST["birthdate"];
-    $imageName = $_POST["image-upload"] ?? '';
+    $imageName = $_FILES["image-upload"]["name"];
     try {
         require "DB_Ops.php";
         $user = "INSERT INTO users (full_name , user_name , birthdate , phone , addrs , pass , Email,imageName )
