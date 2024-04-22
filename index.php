@@ -10,7 +10,7 @@
     <div id="blur">
         <div class="registeration-container">
             <div class="header">Registration Form</div>
-            <form action="Upload.php" id="form" class="form" method="POST" enctype="multipart/form-data">
+            <form  id="form" class="form" method="POST" enctype="multipart/form-data">
                 <div class="input-container">
                     <div class="form-group">
                         <label for="full-name">Full Name <span>*</span></label><br>
@@ -81,6 +81,7 @@
         <div class="close-btn" onclick="toggle()">&times;</div>
         <h1>Actors With the Same Age as You</h1>
         <div class="popup-text">
+            <p>name1 - name2 - name3 - name4</p>
             <p>name1 - name2 - name3 - name4</p>
         </div>
     </div>

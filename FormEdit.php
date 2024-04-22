@@ -7,16 +7,17 @@
     $email = $_POST["email"];
     $address = $_POST["address"];
     $birthDate = $_POST["birthdate"];
-    $imageName = $_POST["image-upload"] ?? '';
+    $imageName = $_FILES['image-upload']['name'];
+
     try {
         require "DB_Ops.php";
         $user = "INSERT INTO users (full_name , user_name , birthdate , phone , addrs , pass , Email,imageName )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         $stmt = $pdo->prepare($user);
         $stmt->execute([$fullName, $userName, $birthDate, $phoneNum, $address, $pass, $email , $imageName]);
-        echo 'success';
+        echo json_encode(['success' => true, 'message' => 'User registered Successfully']);
     } catch (PDOException $e) {
-        echo 'error';      
+        echo json_encode(['success' => false]);    
     }
 
 // if ($_SERVER["REQUEST_METHOD"] == "POST") {

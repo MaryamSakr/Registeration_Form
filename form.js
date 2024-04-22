@@ -20,34 +20,62 @@ $(form).submit(function(e) {
     e.preventDefault(); 
     
     var formData = new FormData(form)
+    for(var pair of formData.entries()){
+        console.log(pair[0] + ': ' + pair[1])
+
+    }
 
     if (!validateInputs()) {
         return; 
     }
-    
+
     $.ajax({
         url: 'FormEdit.php',
         type: 'POST',
         data: formData,
+        dataType: 'json',
         processData: false,
         contentType: false,
         success: function(response) {
-            if( response === "success"){
-                setSuccess(username)
+            if( response.success){
+                setSuccess(username);
                 form.reset();
                 setNeutral();
-                alert("User registered successfully");
-            }else if(response === "error"){
-                setError(username,"Username already Exists")
+                alert(response.message);
+                uploadImage(formData);
+            }else{
+                setError(username,"Username already Exists");
             }
         },
-        error: function(xhr, status, error) {
-            alert(xhr.responseText)
+        error: function() {
+            alert("An error occurred while processing your request.");
         }
     });
+
+    
+
 });
 
-
+function uploadImage(formData) {
+    $.ajax({
+        url: 'Upload.php',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if(response.success) {
+                alert("Image: [" + response.queryString + "] Uploaded Successfully");
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function() {
+            alert("An error occurred while processing your request.");
+        }
+    });
+}
 
 
 // form.addEventListener('submit', e => {
