@@ -12,8 +12,6 @@ const image = document.getElementById('image-upload')
 
 
 
-
-
 $(form).submit(function(e) {
             
 
