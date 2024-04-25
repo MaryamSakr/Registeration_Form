@@ -1,6 +1,6 @@
 <?php
 
-$url_1 = 'https://online-movie-database.p.rapidapi.com/actors/list-born-today?month=' . $_GET['month'] . '&day=' . $_GET['day'];
+$url_1 = 'https://online-movie-database.p.rapidapi.com/actors/list-born-today?month=' . $_POST['month'] . '&day=' . $_POST['day'];
 
 $curl_1 = curl_init();
 
@@ -41,13 +41,17 @@ foreach ($response1 as $actor) {
             "X-RapidAPI-Key: 3ef6d553femsh1fece224baf6632p192d58jsnf7474723fa3b"
         ],
     ]);
+
     $response2 = curl_exec($curl_2);
     $response2 = json_decode($response2);
-    if (!empty($respons2)) {
 
-        echo "Actor: " . $response2->name . "<br>";
+    if  (isset($response2->name)) {
+
+        $actorNames[] = $response2->name;
     }
     curl_close($curl_2);
+
 }
 
+echo json_encode($actorNames);
 ?>

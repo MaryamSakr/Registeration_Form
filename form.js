@@ -11,7 +11,6 @@ const birthdate = document.getElementById('birthdate')
 const image = document.getElementById('image-upload')
 
 
-
 $(form).submit(function(e) {
             
 
@@ -74,6 +73,43 @@ function uploadImage(formData) {
         }
     });
 }
+
+
+$(".api-check").click(function() {
+
+    var date = document.getElementById("birthdate");
+    var selectedDate = new Date(date.value);
+    var day = selectedDate.getDate();
+    var month = selectedDate.getMonth() + 1;
+
+    $.ajax({
+        url: "API_Ops.php",
+        type: "POST",
+        dataType: "json",
+        data:{
+            month: month,
+            day: day
+        },
+        success: function(response) {
+            var actorNamesHtml = "";
+  
+            for (var i = 0; i < response.length; i += 4) {
+
+              var group = response.slice(i, i + 4);
+              actorNamesHtml += "<p>" + group.join(" - ") + "</p>";
+
+            }
+          
+            $(".popup-text").html(actorNamesHtml);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log("Status: " + textStatus);
+            console.log("Error: " + errorThrown);
+            console.log("Response Text: " + jqXHR.responseText)
+        }
+      });
+
+    });
 
 
 // form.addEventListener('submit', e => {
