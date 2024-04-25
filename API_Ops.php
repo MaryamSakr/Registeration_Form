@@ -13,8 +13,8 @@ curl_setopt_array($curl_1, [
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => "GET",
     CURLOPT_HTTPHEADER => [
-        "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-        "X-RapidAPI-Key: 3ef6d553femsh1fece224baf6632p192d58jsnf7474723fa3b"
+       "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
+        "X-RapidAPI-Key: 9698c717bamsha71194b676b0e9ep1d29afjsneae7bc4def30"
     ],
 ]);
 
@@ -38,7 +38,7 @@ foreach ($response1 as $actor) {
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_HTTPHEADER => [
             "X-RapidAPI-Host: online-movie-database.p.rapidapi.com",
-            "X-RapidAPI-Key: 3ef6d553femsh1fece224baf6632p192d58jsnf7474723fa3b"
+            "X-RapidAPI-Key: 9698c717bamsha71194b676b0e9ep1d29afjsneae7bc4def30"
         ],
     ]);
     $response2 = curl_exec($curl_2);
