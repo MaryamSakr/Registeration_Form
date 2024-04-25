@@ -6,7 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="form.css">
 </head>
-<body>
+<body>        
     <div id="blur">
         <div class="registeration-container">
             <div class="header">Registration Form</div>
@@ -73,7 +73,7 @@
                 <div class="submit">
                     <input type="submit" value="Register">
                 </div>
-            
+
             </form>
         </div>
     </div>

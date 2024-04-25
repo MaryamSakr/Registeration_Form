@@ -1,0 +1,42 @@
+header {
+    background-color: white;
+    color: #192C78;
+    padding: 20px;
+    text-align: center;
+    height: 65px;
+    text-align: left;
+    border-radius: 0px 0px 10px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    border: #478fe1 solid 2px;
+}
+
+.name{
+    font-size: 30px;
+    color: #192C78;
+}
+nav{
+    text-align: right;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #192C78;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
