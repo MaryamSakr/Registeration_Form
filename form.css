@@ -190,6 +190,8 @@ label {
 
 .popup-text p {
     margin: 3px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     font-size: 18px;
 }
 

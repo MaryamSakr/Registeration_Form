@@ -76,7 +76,6 @@ function uploadImage(formData) {
 
 
 $(".api-check").click(function() {
-
     var date = document.getElementById("birthdate");
     var selectedDate = new Date(date.value);
     var day = selectedDate.getDate();
@@ -85,27 +84,30 @@ $(".api-check").click(function() {
     $.ajax({
         url: "API_Ops.php",
         type: "POST",
-        dataType: "json",
         data:{
             month: month,
             day: day
         },
         success: function(response) {
+            var actorNames = JSON.parse(response);
+
             var actorNamesHtml = "";
-  
-            for (var i = 0; i < response.length; i += 4) {
+            
+            console.log(actorNames)
 
-              var group = response.slice(i, i + 4);
-              actorNamesHtml += "<p>" + group.join(" - ") + "</p>";
-
+            for (var i = 0; i < actorNames.length; i += 3) {
+                var group = actorNames.slice(i, i + 3);
+                actorNamesHtml += "<p>" + group.join(" - ") + "</p>";
             }
-          
+            
             $(".popup-text").html(actorNamesHtml);
+          
         },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log("Status: " + textStatus);
-            console.log("Error: " + errorThrown);
-            console.log("Response Text: " + jqXHR.responseText)
+        error: function(jqXHR, textStatus, errorThrown,response) {
+            // console.log("response: " + response);
+            // console.log("Status: " + textStatus);
+            // console.log("Error: " + errorThrown);
+            // console.log("Response Text: " + jqXHR.responseText)
         }
       });
 
