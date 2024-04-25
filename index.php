@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="form.css">
+    <link rel="stylesheet" href="Header.css">
+
 </head>
-<body>        
+<body>     
+    <?php include 'header.php'; ?>
+
     <div id="blur">
         <div class="registeration-container">
             <div class="header">Registration Form</div>
@@ -81,9 +85,12 @@
         <div class="close-btn" onclick="toggle()">&times;</div>
         <h1>Actors With the Same Age as You</h1>
         <div class="popup-text">
-
         </div>
     </div>
+
+
+    <?php include 'footer.php'; ?>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="form.js"></script>
     <script>
@@ -91,21 +98,16 @@
         function toggle() {
            document.getElementById("blur").classList.toggle("active")
            document.querySelector(".popup-container").classList.toggle("popup-container-show")
-
-
-            
-            // var date = document.getElementById("birthdate");
-            // var selectedDate = new Date(date.value);
-            // var day = selectedDate.getDate();
-            // var month = selectedDate.getMonth() + 1;
-            // window.location.href = 'API_Ops.php?day='+encodeURIComponent(day)+'&month='+encodeURIComponent(month);
-
-
         }
 
-        
-
+        window.addEventListener('scroll', function () {
+            let header = document.querySelector('nav');
+            let windowPosition = window.scrollY > 0;
+            header.classList.toggle('scrolled-nav', windowPosition);
+        })
     </script>
+
+  
 
 </body>
 </html>
