@@ -59,8 +59,12 @@ nav{
     padding-left: 15%; 
 }
 .logo a{
+
     text-decoration: none;
     color: white;
+    cursor: default;
+
+
 }
 .menu{
     display:flex;
@@ -84,7 +88,8 @@ nav{
     transition: all .3s;
 }
 .menu a:hover{
-    color:rgba(184, 184, 184, 0.696) ;
+    /* color:rgba(184, 184, 184, 0.696) ; */
+    color: #E63B60;
     transition: all .3s;
 }
 .scrolled-nav{
@@ -92,7 +97,7 @@ nav{
     grid-template-columns: 1fr 1.5fr;
     grid-column-gap: 15%;
     align-items: center;
-    background-color: #0C1434; 
+    background-color: #192a76; 
     position: fixed;
     width: 100%;  
     height: 60px;   
